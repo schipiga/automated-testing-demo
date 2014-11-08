@@ -5,6 +5,10 @@ __author__ = "chipiga86@yandex.ru"
 from selenium import webdriver
 
 
+class BrowserError(Exception):
+    pass
+
+
 class Browser(object):
 
     def __init__(self, browser_name):
@@ -24,4 +28,12 @@ class Browser(object):
         self.click()
 
     def new_tab(self, url):
-        pass    
+        pass
+
+    @property
+    def current_tab(self):
+        return tab
+
+    @property
+    def current_page(self):
+        return Page.get_page_by(self._driver.current_url, self.current_tab)
