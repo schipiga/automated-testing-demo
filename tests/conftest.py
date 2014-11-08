@@ -5,8 +5,6 @@ __author__ = "chipiga86@yandex.ru"
 import pytest
 from libs.browser import Browser
 
-# from ui import ui as UI
-
 # @pytest.fixture(scope="session")
 # def db():
 # 	return DB()

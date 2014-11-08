@@ -7,11 +7,14 @@ def test_add_statement_school(browser, admin_page, els, db):
     """https://testlink.it.ru/education/school-263
     """
 
-    statements_form = admin_page.menu.click(els.statements)
+    school_name = u"3-я специализированная школа"
+
+    statements_form = admin_page.menu.click(admin_page.gui.statements_mnu)
     statement = statements_form.select_statement(1)
     browser.right_click(statement)
-    transfer_form = browser.click(els.transfer)
-    transfer_form.choose_school(7)
+    transfer_form = browser.click(statements_form.gui.transfer_btn)
+    transfer_form.choose_school(school_name)
     transfer_form.confirm()
 
-    assert_that(db.statement[1].school, equal_to(7))
+    with report.step('Check that statement was forwarded to school %s' % school_name):
+        assert_that(db.statements.first.school.name, equal_to(school_name), 'Invalid school')
