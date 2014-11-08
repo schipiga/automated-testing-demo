@@ -3,7 +3,6 @@
 __author__ = "chipiga86@yandex.ru"
 
 from report import report
-from form import FormFactory
 
 
 class Menu(object):
@@ -20,13 +19,13 @@ class Menu(object):
         self.click_start_menu()
 
         def get_parents(item, items=[]):
-            if item.parent:
+            if getattr(item, 'parent', None):
                 items.append(item.parent)
                 get_parents(item.parent)
             else:
                 return items
 
-        for parent_item in reverse(get_parents(menu_item)):
+        for parent_item in reversed(get_parents(menu_item)):
             self.browser.click(parent_item)       
 
     def right_click(self, menu_item):
@@ -37,8 +36,4 @@ class Menu(object):
     def click(self, menu_item):
         with report.step('Click menu item "%s"' % menu_item):
             self._expand_to(menu_item)
-            self.browser.click(menu_item)
-
-        if menu_item.form:
-            form = FormsFactory.get_form(menu_item.form, self.page)
-            self.page.forms.append(form)
+            return self.browser.click(menu_item)

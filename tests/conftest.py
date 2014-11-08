@@ -3,20 +3,20 @@
 __author__ = "chipiga86@yandex.ru"
 
 import pytest
+
+from libs.db import DB
 from libs.browser import Browser
 
-# @pytest.fixture(scope="session")
-# def db():
-# 	return DB()
 
+@pytest.yield_fixture(scope="session")
+def db():
+    db = DB()
+    db.begin_transation()
 
-# @pytest.yield_fixture(autouse=True)
-# def prepare_db(db):
-# 	db.begin_transation()
+    yield db
 
-# 	yield
+    db.rollback_transaction()
 
-# 	db.rollback_transaction()
 
 @pytest.fixture(scope='session')
 def browser(request):
@@ -29,7 +29,7 @@ def web_app(request, browser):
     app_host = request.config.inicfg.config.get('pytest', 'host')
     browser.launch()
     browser.app_host = app_host
-    return browser.open_page('/')
+    return browser.open('/')
 
 
 @pytest.fixture
@@ -37,17 +37,20 @@ def login_page(web_app):
     return web_app
 
 
-# @pytest_fixture
-# def admin_page(login_page):
-#     login_page.set_login('admin')
-#     login_page.set_password('admin')
-#     login_page.submit()
-#     return browser.current_page
+@pytest.fixture
+def admin_page(browser, login_page):
+    login_page.set_login('admin')
+    login_page.set_password('admin')
+    login_page.submit()
+    return browser.current_page
 
 
-# @pytest_fixture(scope='session')
-# def ui():
-#     return UI
+@pytest.fixture
+def ministry_page(browser, login_page):
+    login_page.set_login('ministry')
+    login_page.set_password('ministry')
+    login_page.submit()
+    return browser.current_page
 
 
 # @pytest.fixture

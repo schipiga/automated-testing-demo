@@ -7,6 +7,7 @@ class FakeDriver(object):
 
     def __init__(self):
         self._url = None
+        self.cookies = {'auth_key': True}
 
     def get(self, url):
         self._url = url
@@ -15,11 +16,14 @@ class FakeDriver(object):
     def current_url(self):
         return self._url
 
-    def find_element(self):
+    def find_element(self, gui_element):
         return FakeElement()
 
 
 class FakeElement(object):
+
+    def __init__(self):
+        self.type = self.name = 'undefined'
 
     def click(self):
         pass

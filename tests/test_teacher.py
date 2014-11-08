@@ -2,7 +2,12 @@
 
 __author__ = "chipiga86@yandex.ru"
 
+from libs.report import report
+from libs.marks import marks
 
+
+@marks.full
+@marks.accept
 def test_transfer_pupil_another_class(teacher_page):
     """https://testlink.it.ru/education/school-927
     """

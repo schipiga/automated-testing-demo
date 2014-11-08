@@ -5,7 +5,8 @@ __author__ = "chipiga86@yandex.ru"
 from selenium import webdriver
 
 from fake_driver import FakeDriver as driver
-from page import PageFactory
+from forms import FormFactory
+from pages import PageFactory
 from report import report
 
 
@@ -25,23 +26,25 @@ class Browser(object):
 
     @app_host.setter
     def app_host(self, value):
-        return self._app_host = value
+        self._app_host = value
 
     @report.step('Launch browser')
     def launch(self):
         pass
 
-    def open(self, url):
+    def open(self, path):
+        url = self.app_host + path
         with report.step('Open url "%s"' % url):
-            self._driver.get(url)
+            self.driver.get(url)
             self.wait_dom_build()
             return self.current_page
 
     def wait_dom_build(self):
         pass
 
-    def right_click(self):
-        pass
+    def right_click(self, gui_component):
+        with report.step('Right click GUI "%s"' % gui_component.name):
+            pass
 
     def double_click(self):
         self.click()
@@ -59,6 +62,11 @@ class Browser(object):
         element = self.find_element(gui_component)
         element.click()
 
+        if getattr(gui_component, 'form', None):
+            form = FormFactory.get_form(gui_component.form, self.current_page)
+            self.current_page.forms.append(form)
+            return form
+
     def wait_element(self, timeout=30):
         pass
 
@@ -70,6 +78,7 @@ class Browser(object):
         element = setf.find_element(gui_component)
         return element.get_text()
 
+    @property
     def driver(self):
         return self._driver
 

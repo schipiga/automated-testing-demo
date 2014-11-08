@@ -2,8 +2,12 @@
 
 __author__ = "chipiga86@yandex.ru"
 
+from libs.marks import marks
 from libs.report import report
 
+
+@marks.full
+@marks.accept
 def test_transfer_successful_pupils():
     """https://testlink.it.ru/education/school-829
     """
@@ -11,6 +15,8 @@ def test_transfer_successful_pupils():
         pass
     
 
+@marks.full
+@marks.sanity
 def test_stupid_pupils_same_grade():
     """https://testlink.it.ru/education/school-476
     """

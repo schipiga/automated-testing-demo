@@ -1,0 +1,6 @@
+add_school_btn:
+    type: id
+    name: add_school_btn
+    ru: Добавить школу
+    en: Add school
+    form: add_school_form

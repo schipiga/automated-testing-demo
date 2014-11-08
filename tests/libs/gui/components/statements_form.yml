@@ -1,0 +1,6 @@
+transfer_mnu:
+    type: id
+    name: transfer_mnu
+    ru: Направить в школу
+    en: Transfer to school
+    form: transfer_form

@@ -11,4 +11,4 @@ class DB(str):
     def __getattr__(self, *args, **kwgs):
         return self
 
-    __getitem__ = __getslice__ = __getattr__
+    __getitem__ = __getslice__ = __call__ = __getattr__

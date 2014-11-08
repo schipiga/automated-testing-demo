@@ -1,0 +1,12 @@
+statements_mnu:
+    type: id
+    name: statements_mnu
+    ru: Заявления
+    en: Statements
+    form: statements_form
+
+menu_start:
+    type: id
+    name: start_mnu
+    ru: Пуск
+    en: Start

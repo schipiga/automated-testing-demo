@@ -22,10 +22,14 @@ class AttrDict(dict):
 class GUI(object):
 
     def __init__(self, container_name):
-        file_path = path.join(path.dirname(__file__), 'components',
-                              '%s.yml' % to_snake_case(container_name))
+        components = {}
 
-        components = yaml.load(open(file_path))
+        for name in ('common', to_snake_case(container_name)):
+            file_path = path.join(path.dirname(__file__), 'components', '%s.yml' % name)
+            content = yaml.load(open(file_path))
+            if content:
+                components.update(content)
+
         components = AttrDict(components)
 
         for key in components:

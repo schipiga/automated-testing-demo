@@ -2,9 +2,14 @@
 
 __author__ = "chipiga86@yandex.ru"
 
+from hamcrest import assert_that, equal_to
+
+from libs.marks import marks
 from libs.report import report
 
 
+@marks.smoke
+@marks.full
 def test_valid_authentication(browser, login_page):
     """https://testlink.it.ru/education/school-235
     """
@@ -18,32 +23,37 @@ def test_valid_authentication(browser, login_page):
         assert_that(auth_cookie)
 
     with report.step('Check that user_page is opened'):
-        assert_that(user_page.title, equal_to(u'Личный кабинет'), 'Invalid page title')
+        assert_that(user_page.title, equal_to('Личный кабинет'), 'Invalid page title')
 
-def test_authentication_stored(browser, main_page):
+
+@marks.full
+@marks.smoke
+def test_authentication_stored(browser, login_page):
     """https://testlink.it.ru/education/school-233
     """
-    main_page.set_login('admin')
-    main_page.set_password('admin')
-    main_page.enable_remember_me()
-    main_page.submit()
+    login_page.set_login('admin')
+    login_page.set_password('admin')
+    login_page.enable_remember_me()
+    login_page.submit()
     browser.close()
     browser.launch()
     page = browser.open('/admin')
 
     with report.step('Check that session stored'):
-        assert_that(page.title, equal_to(u'Личный кабинет'), 'Invalid page title')
+        assert_that(page.title, equal_to('Личный кабинет'), 'Invalid page title')
 
 
-def test_authentication_not_stored():
+@marks.full
+@marks.accept
+def test_authentication_not_stored(browser, login_page):
     """https://testlink.it.ru/education/school-234
     """
-    main_page.set_login('admin')
-    main_page.set_password('admin')
-    main_page.submit()
+    login_page.set_login('admin')
+    login_page.set_password('admin')
+    login_page.submit()
     browser.close()
     browser.launch()
     page = browser.open('/')
 
     with report.step('Check that session is\'n stored'):
-        assert_that(page.title, equal_to(u'Электронная школа: РФ'), 'Invalid page title')
+        assert_that(page.title, equal_to('Электронная школа: РФ'), 'Invalid page title')

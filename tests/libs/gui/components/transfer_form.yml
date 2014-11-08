@@ -1,0 +1,5 @@
+submit_btn:
+    type: id
+    name: submit_transfer_btn
+    ru: OK
+    en: OK

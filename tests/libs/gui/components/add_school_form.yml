@@ -1,0 +1,5 @@
+submit:
+    type: id
+    name: add_school_submit
+    ru: Добавить школу
+    en: Add school

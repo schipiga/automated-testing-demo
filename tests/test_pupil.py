@@ -2,16 +2,19 @@
 
 __author__ = "chipiga86@yandex.ru"
 
+from libs.marks import marks
 from libs.report import report
 
 
+@marks.full
+@marks.smoke
 def test_send_message_teacher(pupil_page):
     """https://testlink.it.ru/education/school-582
     """
 
-    msg_text = u'Я заболел и завтра не приду'
+    msg_text = 'Я заболел и завтра не приду'
 
-    chat_form = pupil_page.menu.click(Chat)
+    chat_form = pupil_page.menu.click(pupil_page.gui.chat)
     chat_form.select_teacher()
     chat_form.send_message(msg_text)
 

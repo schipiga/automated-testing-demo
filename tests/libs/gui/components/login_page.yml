@@ -1,17 +1,17 @@
 login:
-  type: id
-  name: login_txt
+    type: id
+    name: login_txt
 
 password:
-  type: id
-  name: password_txt
+    type: id
+    name: password_txt
 
 submit:
-  type: id
-  name: login_btn
-  ru: Войти
-  en: Enter
+    type: id
+    name: login_btn
+    ru: Войти
+    en: Enter
 
 remember_me:
-  type: id
-  name: remember_me
+    type: id
+    name: remember_me

@@ -1,0 +1,6 @@
+schools_mnu:
+    type: id
+    name: schools_mnu
+    ru: Школы
+    en: Schools
+    form: schools_form
