@@ -2,7 +2,7 @@
 
 __author__ = "chipiga86@yandex.ru"
 
-from report import report
+from libs.report import report
 
 
 def test_valid_authentication(browser, login_page):

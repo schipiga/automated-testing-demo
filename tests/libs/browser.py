@@ -64,12 +64,15 @@ class Browser(object):
     def current_url(self):
         return self._driver.url
 
-    def find_element(self):
-        self._driver
+    def find_element(self, gui_component):
+        pass
 
-    def click(self, elem_id):
-        element = self.find_element(elem_id)
-        element.click()
+    def click(self, gui_component):
+        element = self.find_element(gui_component)
+        # element.click()
 
     def wait_element(self):
         self.find_element
+
+    def set_text(self, gui_component, value):
+        pass
