@@ -2,6 +2,9 @@
 
 __author__ = "chipiga86@yandex.ru"
 
+from report import report
+from utils import to_snake_case
+
 
 def register_form(cls):
     FormFactory.forms[to_snake_case(cls.__name__)] = cls
@@ -33,14 +36,16 @@ class StatementsForm(object):
 class SchoolsForm(Form):
 
     def click_add(self):
+        pass
 
 
 class AddSchoolForm(Form):
 
     def set_name(self, name):
-        
+        pass        
 
     def confirm(self):
+        pass
 
 
 class TransferForm(Form):
@@ -51,3 +56,12 @@ class TransferForm(Form):
     @report.step('Click "confirm" button')
     def confirm(self):
         self.browser.click(self.els.confirm)
+
+
+class TransferForm(Form):
+
+    def select_pupil(self, pupil_name):
+        pass
+
+    def select_grade(self, grade_name):
+        pass

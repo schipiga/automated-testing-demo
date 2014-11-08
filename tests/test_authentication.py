@@ -2,13 +2,16 @@
 
 __author__ = "chipiga86@yandex.ru"
 
+from report import report
 
-def test_valid_authentication():
+
+def test_valid_authentication(browser, login_page):
     """https://testlink.it.ru/education/school-235
     """
-    main_page.set_login('admin')
-    main_page.set_password('admin')
-    user_page = main_page.submit()
+    login_page.set_login('admin')
+    login_page.set_password('admin')
+    login_page.submit()
+    user_page = browser.current_page
     auth_cookie = user_page.cookies.get('auth_key')
 
     error_messages = []
@@ -17,17 +20,17 @@ def test_valid_authentication():
     if not auth_cookie:
         error_messages.append('No auth cookie.')
 
-    with allure.step('Check that no problem after authentication.'):
+    with report.step('Check that no problem after authentication.'):
         assert_that(not error_messages, 'There are some errors.\n%s', '\n'.join(error_messages))
 
 
-def test_authentication_stored(main_page):
+def test_authentication_stored(browser, main_page):
     """https://testlink.it.ru/education/school-233
     """
     main_page.set_login('admin')
     main_page.set_password('admin')
-    main_page.remember_me()
-    user_page = main_page.submit()
+    main_page.enable_remember_me()
+    main_page.submit()
     browser.close()
     browser.launch()
     page = browser.open_app()
@@ -38,7 +41,7 @@ def test_authentication_not_stored():
     """
     main_page.set_login('admin')
     main_page.set_password('admin')
-    user_page = main_page.submit()
+    main_page.submit()
     browser.close()
     browser.launch()
     page = browser.open_app()

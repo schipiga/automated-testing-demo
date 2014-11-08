@@ -2,7 +2,7 @@
 
 __author__ = "chipiga86@yandex.ru"
 
-from elements import elements as els
+# from elements import elements as els
 from menu import Menu
 from report import report
 
@@ -16,22 +16,30 @@ class PageFactory(object):
     pages = {}
 
     @classmethod
-    def get_page_by(cls, url, tab):
-        return cls.pages[url](tab)
+    def get_page(cls, url, browser):
+        return cls.pages[url](browser)
 
 
 class Page(object):
 
     url = None
 
-    def __init__(self, tab):
-        self.tab = tab
-        self.browser = tab.browser
-        self.menu = Menu()
+    def __init__(self, browser):
+        self.browser = browser
+        self.menu = Menu(self)
 
+    @property
+    def title(self):
+        return self.browser.current_title
+
+    # @property
+    # def url(self):
+    #     return self.browser.current_url
 
 @register_page
-class MainPage(Page):
+class LoginPage(Page):
+
+    url = '/'
 
     def set_login(self, login):
         with report.step('Enter login "%s"' % login):
@@ -52,3 +60,7 @@ class MainPage(Page):
     @report.step('Click "submit" button')
     def submit(self):
         self.browser.click(els.submit)
+
+    @property
+    def title(self):
+        return u'Электронная школа: РФ'

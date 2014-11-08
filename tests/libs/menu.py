@@ -2,9 +2,9 @@
 
 __author__ = "chipiga86@yandex.ru"
 
-from elements import elements as els
+# from elements import elements as els
 from report import report
-from forms import FormsFactory
+from form import FormFactory
 
 
 class Menu(object):
