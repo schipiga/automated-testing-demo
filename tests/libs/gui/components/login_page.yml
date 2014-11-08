@@ -9,7 +9,9 @@ password:
 submit:
   type: id
   name: login_btn
+  ru: Войти
+  en: Enter
 
 remember_me:
   type: id
-  name: remember_cbx
+  name: remember_me

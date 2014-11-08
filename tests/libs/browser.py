@@ -4,6 +4,7 @@ __author__ = "chipiga86@yandex.ru"
 
 from selenium import webdriver
 
+from fake_driver import FakeDriver as driver
 from page import PageFactory
 from report import report
 
@@ -15,24 +16,28 @@ class BrowserError(Exception):
 class Browser(object):
 
     def __init__(self, browser_name):
-        # driver = getattr(webdriver, browser_name)
-        # self._driver = driver()
-        # self.tabs = []
-        self.app_host = None
+        self._driver = driver()
+        self._app_host = None
+
+    @property
+    def app_host(self):
+        return self._app_host
+
+    @app_host.setter
+    def app_host(self, value):
+        return self._app_host = value
 
     @report.step('Launch browser')
     def launch(self):
         pass
 
-    def open_page(self, url):
-        # self._driver.get('/')
-        self.wait_dom_build()
-        return self.current_page
+    def open(self, url):
+        with report.step('Open url "%s"' % url):
+            self._driver.get(url)
+            self.wait_dom_build()
+            return self.current_page
 
     def wait_dom_build(self):
-        pass
-
-    def click(self):
         pass
 
     def right_click(self):
@@ -43,36 +48,37 @@ class Browser(object):
         sleep(.5)
         self.click()
 
-    def new_tab(self, url):
-        pass
-
-    @property
-    def current_tab(self):
-        return tab
-
     @property
     def current_page(self):
-        # url = self._driver.current_url
-        url = '/'
-        return PageFactory.get_page(url, self)
-
-    @property
-    def current_title(self):
-        return self._driver.title
-
-    @property
-    def current_url(self):
-        return self._driver.url
+        return PageFactory.get_page(self._driver.current_url, self)
 
     def find_element(self, gui_component):
-        pass
+        return self._driver.find_element(gui_component)
 
     def click(self, gui_component):
         element = self.find_element(gui_component)
-        # element.click()
+        element.click()
 
-    def wait_element(self):
-        self.find_element
+    def wait_element(self, timeout=30):
+        pass
 
-    def set_text(self, gui_component, value):
+    def set_text(self, gui_component, text):
+        element = self.find_element(gui_component)
+        element.set_text(text)
+
+    def get_text(self, gui_component):
+        element = setf.find_element(gui_component)
+        return element.get_text()
+
+    def driver(self):
+        return self._driver
+
+    @report.step('Close browser')
+    def close(self):
+        pass
+
+    def enable(self, gui_component):
+        pass
+
+    def disable(self, gui_component):
         pass

@@ -26,5 +26,10 @@ class GUI(object):
                               '%s.yml' % to_snake_case(container_name))
 
         components = yaml.load(open(file_path))
+        components = AttrDict(components)
 
-        self.__dict__.update(AttrDict(components).__dict__)
+        for key in components:
+            if components[key].get('parent'):
+                components[key]['parent'] = components[components[key]['parent']]
+
+        self.__dict__.update(components)
