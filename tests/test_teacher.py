@@ -6,6 +6,8 @@ from libs.report import report
 from libs.marks import marks
 
 
+@report.feature('e-school')
+@report.story('teacher')
 @marks.full
 @marks.accept
 def test_transfer_pupil_another_class(teacher_page):

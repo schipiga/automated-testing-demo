@@ -9,6 +9,8 @@ from libs.marks import marks
 from libs.report import report
 
 
+@report.feature('e-school')
+@report.story('parent')
 @marks.full
 @marks.sanity
 def test_queue_information(parent_page):
@@ -23,9 +25,12 @@ def test_queue_information(parent_page):
         assert_that(queue_form.info_text, equal_to(ethalon), 'Mismatched child queue.')
 
 
+@report.feature('e-school')
+@report.story('parent')
 @marks.full
 @marks.smoke
-@pytest.mark.parametrize("child_name", (u'Маша', u'Алена', u'Витя'))
+@pytest.mark.parametrize("child_name", (u'Маша', u'Алена', u'Витя'),
+                         ids=(u'Маша', u'Алена', u'Витя'))
 def test_child_scores(parent_page, child_name):
     """https://testlink.it.ru/education/school-592
     """
@@ -36,6 +41,8 @@ def test_child_scores(parent_page, child_name):
         assert_that(scores_form.scores, 'Oops! No scores')
 
 
+@report.feature('e-school')
+@report.story('parent')
 @marks.full
 @marks.accept
 def test_parents_meeting_info(parent_page):

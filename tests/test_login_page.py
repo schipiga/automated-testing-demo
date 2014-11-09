@@ -8,6 +8,8 @@ from libs.report import report
 from libs.marks import marks
 
 
+@report.feature('e-school')
+@report.story('login')
 @marks.smoke
 @marks.full
 def test_available_login_page(login_page):

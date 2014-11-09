@@ -8,6 +8,8 @@ from libs.marks import marks
 from libs.report import report
 
 
+@report.feature('e-school')
+@report.story('authentication')
 @marks.smoke
 @marks.full
 def test_valid_authentication(browser, login_page):
@@ -26,6 +28,8 @@ def test_valid_authentication(browser, login_page):
         assert_that(user_page.title, equal_to('Личный кабинет'), 'Invalid page title')
 
 
+@report.feature('e-school')
+@report.story('authentication')
 @marks.full
 @marks.smoke
 def test_authentication_stored(browser, login_page):
@@ -43,6 +47,8 @@ def test_authentication_stored(browser, login_page):
         assert_that(page.title, equal_to('Личный кабинет'), 'Invalid page title')
 
 
+@report.feature('e-school')
+@report.story('authentication')
 @marks.full
 @marks.accept
 def test_authentication_not_stored(browser, login_page):

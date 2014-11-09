@@ -6,6 +6,8 @@ from libs.marks import marks
 from libs.report import report
 
 
+@report.feature('e-school')
+@report.story('system')
 @marks.full
 @marks.accept
 def test_transfer_successful_pupils():
@@ -15,6 +17,8 @@ def test_transfer_successful_pupils():
         pass
     
 
+@report.feature('e-school')
+@report.story('system')
 @marks.full
 @marks.sanity
 def test_stupid_pupils_same_grade():

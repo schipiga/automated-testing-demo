@@ -8,6 +8,8 @@ from libs.marks import marks
 from libs.report import report
 
 
+@report.feature('e-school')
+@report.story('admin')
 @marks.sanity
 @marks.full
 def test_add_statement_school(browser, admin_page, db):

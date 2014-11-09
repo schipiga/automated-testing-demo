@@ -8,6 +8,8 @@ from libs.marks import marks
 from libs.report import report
 
 
+@report.feature('e-school')
+@report.story('pupil')
 @marks.full
 @marks.smoke
 def test_send_message_teacher(pupil_page, db):

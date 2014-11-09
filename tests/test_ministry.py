@@ -8,6 +8,8 @@ from libs.marks import marks
 from libs.report import report
 
 
+@report.feature('e-school')
+@report.story('ministry')
 @marks.full
 @marks.smoke
 def test_schools_list(ministry_page):
@@ -23,6 +25,8 @@ def test_schools_list(ministry_page):
         assert_that(len(schools), equal_to(ethalon_len), 'Schools amount mismatches ethalon.')
 
 
+@report.feature('e-school')
+@report.story('ministry')
 @marks.full
 @marks.smoke
 def test_add_school(ministry_page, db):
