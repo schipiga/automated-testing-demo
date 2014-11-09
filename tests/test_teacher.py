@@ -15,10 +15,5 @@ def test_transfer_pupil_another_class(teacher_page):
     pupil_name = u'Алексеев Олег Игоревич'
     grade_name = u'7B'
 
-    transfer_form = teacher_page.menu.click(teacher_page.gui.transfer_mnu)
-    transfer_form.select_pupil(pupil_name)
-    transfer_form.change_grade(grade_name)
-    transfer_form.confirm()
-
     with report.step(u'Check that %s is transfered to %s' % (pupil_name, grade_name)):
         pass

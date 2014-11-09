@@ -1,0 +1,6 @@
+chat_mnu:
+    type: xpath
+    name: //div[@id="main-menu"]//div[contains(@class, "school-chat")]
+    ru: Школьный чат
+    en: School chat
+    form: chat_form

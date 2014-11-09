@@ -11,3 +11,4 @@ from add_school_form import AddSchoolForm
 from queue_form import QueueForm
 from scores_form import ScoresForm
 from meetings_form import MeetingsForm
+from chat_form import ChatForm

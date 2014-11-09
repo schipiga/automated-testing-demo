@@ -60,9 +60,18 @@ def parent_page(browser, login_page):
     login_page.submit()
     return browser.current_page
 
-# @pytest.fixture
-# def teacher_page(login_page):
-#     login_page.set_login('teacher')
-#     login_page.set_password('teacher')
-#     login_page.submit()
-#     return browser.current_page
+
+@pytest.fixture
+def pupil_page(browser, login_page):
+    login_page.set_login('pupil')
+    login_page.set_password('pupil')
+    login_page.submit()
+    return browser.current_page
+
+
+@pytest.fixture
+def teacher_page(browser, login_page):
+    login_page.set_login('teacher')
+    login_page.set_password('teacher')
+    login_page.submit()
+    return browser.current_page
