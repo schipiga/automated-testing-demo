@@ -29,8 +29,8 @@ def test_queue_information(parent_page):
 @report.story('parent')
 @marks.full
 @marks.smoke
-@pytest.mark.parametrize("child_name", (u'Маша', u'Алена', u'Витя'),
-                         ids=(u'Маша', u'Алена', u'Витя'))
+@pytest.mark.parametrize("child_name", ('Маша', 'Алена', 'Витя'),
+                         ids=('Маша', 'Алена', 'Витя'))
 def test_child_scores(parent_page, child_name):
     """https://testlink.it.ru/education/school-592
     """
