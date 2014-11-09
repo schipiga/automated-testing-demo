@@ -29,7 +29,7 @@ class Menu(object):
             self.browser.click(parent_item)       
 
     def right_click(self, menu_item):
-        with report.step('Right click menu item "%s"' % menu_item):
+        with report.step('Right click menu item "%s"' % menu_item.ru):
             self._expand_to(menu_item)
             self.browser.right_click(menu_item)
 

@@ -24,7 +24,7 @@ def browser(request):
     return Browser(browser_name)
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture
 def web_app(request, browser):
     app_host = request.config.inicfg.config.get('pytest', 'host')
     browser.launch()
