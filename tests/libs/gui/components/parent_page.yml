@@ -1,0 +1,20 @@
+queue_mnu:
+    type: id
+    name: child_queue_mnu
+    ru: Очередь ребенка в школу
+    en: School child queue
+    form: queue_form
+
+scores_mnu:
+    type: id
+    name: child-scores-mnu
+    ru: Оценки ребенка
+    en: Child scores
+    form: scores_form
+
+meetings_mnu:
+    type: id
+    name: school-meetings-mnu
+    ru: Школьные собрания
+    en: School meetings
+    form: meetings_form

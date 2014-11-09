@@ -53,6 +53,13 @@ def ministry_page(browser, login_page):
     return browser.current_page
 
 
+@pytest.fixture
+def parent_page(browser, login_page):
+    login_page.set_login('parent')
+    login_page.set_password('parent')
+    login_page.submit()
+    return browser.current_page
+
 # @pytest.fixture
 # def teacher_page(login_page):
 #     login_page.set_login('teacher')

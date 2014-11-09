@@ -7,3 +7,4 @@ from page_factory import PageFactory
 from login_page import LoginPage
 from admin_page import AdminPage
 from ministry_page import MinistryPage
+from parent_page import ParentPage
